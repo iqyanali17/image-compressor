@@ -1,0 +1,581 @@
+# AI Image Compressor & Optimizer
+
+## Project Overview
+
+AI Image Compressor & Optimizer is a full-stack web application that allows users to upload images, analyze them using AI, compress them efficiently, resize dimensions, convert formats, and download optimized images while maintaining visual quality.
+
+The application combines traditional image processing with AI-powered recommendations to provide an intelligent image optimization experience.
+
+---
+
+# Problem Statement
+
+Large image files:
+
+* Increase website loading time
+* Consume more storage
+* Reduce application performance
+* Increase bandwidth usage
+
+Most image compressors only compress images without helping users determine the best format, dimensions, or quality settings.
+
+This project solves that problem by:
+
+* Analyzing uploaded images using AI
+* Recommending optimal settings
+* Compressing images efficiently
+* Allowing resizing and format conversion
+* Maintaining compression history
+
+---
+
+# Project Goals
+
+### Primary Goals
+
+* Reduce image size
+* Maintain image quality
+* Improve website performance
+* Provide AI-based recommendations
+* Deliver a modern SaaS-like user experience
+
+### Secondary Goals
+
+* Learn Full Stack Development
+* Learn Flask Architecture
+* Learn Image Processing
+* Learn Hugging Face Integration
+* Learn MySQL Database Design
+
+---
+
+# Reference Websites
+
+## TinyPNG
+
+Features:
+
+* PNG Compression
+* JPG Compression
+* WebP Support
+* Drag & Drop Upload
+
+Reference:
+https://tinypng.com
+
+---
+
+## Squoosh
+
+Features:
+
+* Image Compression
+* Resize Image
+* Format Conversion
+* Side-by-Side Comparison
+
+Reference:
+https://squoosh.app
+
+---
+
+## ImageKit
+
+Features:
+
+* Image Optimization
+* CDN Delivery
+* Resize APIs
+
+Reference:
+https://imagekit.io
+
+---
+
+## Cloudinary
+
+Features:
+
+* Image Transformations
+* Resize
+* Optimization
+
+Reference:
+https://cloudinary.com
+
+---
+
+# Unique Features in Our Project
+
+Unlike normal compressors:
+
+### AI Image Analysis
+
+Analyze image using Hugging Face AI.
+
+Detect:
+
+* Photograph
+* Screenshot
+* Artwork
+* Logo
+* Document
+
+---
+
+### Smart Recommendations
+
+Recommend:
+
+* Best Format
+* Best Quality
+* Recommended Dimensions
+
+Example:
+
+Image Type: Photograph
+
+Recommended:
+
+* Format: WEBP
+* Quality: 75%
+* Resolution: 1920x1080
+
+---
+
+### Resize + Compress
+
+Users can:
+
+* Change Width
+* Change Height
+* Maintain Aspect Ratio
+
+---
+
+### Format Conversion
+
+Supported:
+
+* JPG
+* JPEG
+* PNG
+* WEBP
+
+Conversions:
+
+* JPG → WEBP
+* PNG → WEBP
+* WEBP → JPG
+
+---
+
+### Compression Statistics
+
+Show:
+
+* Original Size
+* Compressed Size
+* Space Saved
+* Compression Percentage
+
+---
+
+### Before vs After Comparison
+
+Display:
+
+* Original Image
+* Compressed Image
+
+---
+
+### Compression History
+
+Store:
+
+* Filename
+* Original Size
+* Compressed Size
+* Image Type
+* Date
+
+---
+
+# Technology Stack
+
+## Frontend
+
+### React
+
+Purpose:
+
+Build User Interface
+
+---
+
+### TypeScript
+
+Purpose:
+
+Type Safety
+
+---
+
+### Tailwind CSS
+
+Purpose:
+
+Modern Responsive Design
+
+---
+
+### Axios
+
+Purpose:
+
+API Communication
+
+---
+
+### React Router
+
+Purpose:
+
+Routing
+
+---
+
+### Framer Motion
+
+Purpose:
+
+Animations
+
+---
+
+# Backend
+
+## Flask
+
+Purpose:
+
+REST API Development
+
+---
+
+## Pillow (PIL)
+
+Purpose:
+
+Image Processing
+
+Functions:
+
+* Compression
+* Resize
+* Format Conversion
+
+---
+
+## Hugging Face
+
+Purpose:
+
+Image Analysis
+
+Models:
+
+### google/vit-base-patch16-224
+
+Image Classification
+
+### Salesforce/blip-image-captioning-base
+
+Image Understanding
+
+---
+
+# Database
+
+## MySQL
+
+Purpose:
+
+Store Compression History
+
+Store Analytics
+
+---
+
+# Project Architecture
+
+Frontend
+↓
+Flask API
+↓
+Services Layer
+↓
+Repositories Layer
+↓
+MySQL
+
+Additional Flow
+
+Frontend
+↓
+Flask
+↓
+Hugging Face
+↓
+AI Recommendation
+
+Compression Flow
+
+Frontend
+↓
+Flask
+↓
+Pillow
+↓
+Compressed Image
+
+---
+
+# Frontend Pages
+
+## Home Page
+
+Purpose:
+
+Landing Page
+
+Sections:
+
+* Hero Section
+* Features
+* How It Works
+* Footer
+
+---
+
+## Compress Page
+
+Purpose:
+
+Main Functionality
+
+Features:
+
+* Upload Image
+* Preview Image
+* AI Analysis
+* Resize Settings
+* Compression Settings
+* Download
+
+---
+
+## History Page
+
+Purpose:
+
+View Previous Compressions
+
+Features:
+
+* Search
+* Filters
+* Statistics
+* Download
+
+---
+
+## About Page
+
+Purpose:
+
+Project Information
+
+Features:
+
+* Tech Stack
+* Architecture
+* Developer Information
+
+---
+
+# Backend Folder Structure
+
+image_compressor_api/
+
+* app.py
+* config.py
+* requirements.txt
+* .env
+
+database/
+
+* db.py
+
+models/
+
+* image_history.py
+
+repositories/
+
+* image_repo.py
+
+services/
+
+* compression_service.py
+* analysis_service.py
+* image_service.py
+
+routes/
+
+* image_routes.py
+
+middleware/
+
+* error_handler.py
+
+utils/
+
+* response.py
+* file_helper.py
+
+uploads/
+
+* originals/
+
+compressed/
+
+* output/
+
+---
+
+# API Endpoints
+
+## Analyze Image
+
+POST /api/v1/images/analyze
+
+Purpose:
+
+Generate AI Recommendations
+
+---
+
+## Compress Image
+
+POST /api/v1/images/compress
+
+Purpose:
+
+Compress Image
+
+---
+
+## Download Image
+
+GET /api/v1/images/download/{filename}
+
+Purpose:
+
+Download Optimized Image
+
+---
+
+## Get History
+
+GET /api/v1/images/history
+
+Purpose:
+
+Fetch Compression Records
+
+---
+
+## Delete History
+
+DELETE /api/v1/images/history/{id}
+
+Purpose:
+
+Remove History Record
+
+---
+
+# Database Design
+
+Table:
+
+compression_history
+
+Columns:
+
+* id
+* original_filename
+* compressed_filename
+* original_size
+* compressed_size
+* compression_percentage
+* image_type
+* recommended_quality
+* recommended_format
+* output_format
+* original_width
+* original_height
+* compressed_width
+* compressed_height
+* download_count
+* created_at
+
+---
+
+# Future Enhancements
+
+* User Authentication
+* JWT Authorization
+* User Specific History
+* Bulk Compression
+* ZIP Download
+* Dark Mode
+* Cloud Storage Integration
+* Image Editing Tools
+* AI Quality Scoring
+* Image Enhancement
+* Batch Processing
+
+---
+
+# Expected Outcomes
+
+Users will be able to:
+
+* Upload Images
+* Analyze Images Using AI
+* Resize Images
+* Compress Images
+* Convert Formats
+* Download Optimized Images
+* View Compression History
+
+Result:
+
+Faster websites, reduced storage usage, better user experience, and intelligent image optimization.
+
+---
+
+# Developer
+
+Khwaja Iqyan Ali
+
+Computer Science Student
+
+Full Stack Developer
+
+Tech Stack:
+
+React • TypeScript • Flask • MySQL • AI Integration • Image Processing
