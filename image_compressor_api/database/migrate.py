@@ -10,15 +10,23 @@ from config import Config
 def run_migrations():
     try:
         # Connect without specific database to create it if it doesn't exist
-        connection = mysql.connector.connect(
+        connect_args = dict(
             host=Config.DB_HOST,
+            port=Config.DB_PORT,
             user=Config.DB_USER,
-            password=Config.DB_PASSWORD
+            password=Config.DB_PASSWORD,
         )
+        if Config.DB_SSL:
+            connect_args["ssl_disabled"] = False
+            if Config.DB_SSL_CA:
+                connect_args["ssl_ca"] = Config.DB_SSL_CA
+
+        connection = mysql.connector.connect(**connect_args)
         cursor = connection.cursor()
-        
-        print(f"Ensuring database '{Config.DB_NAME}' exists...")
-        cursor.execute(f"CREATE DATABASE IF NOT EXISTS {Config.DB_NAME}")
+
+        # On managed services like Aiven, the database is pre-created.
+        # Skip CREATE DATABASE and just USE the configured database name.
+        print(f"Using database '{Config.DB_NAME}'...")
         cursor.execute(f"USE {Config.DB_NAME}")
         
         print("Ensuring 'image_history' table exists...")
