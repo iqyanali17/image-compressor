@@ -10,9 +10,12 @@ def _parse_origins(raw: str) -> list:
 class Config:
     # Database
     DB_HOST     = os.getenv("DB_HOST", "localhost")
+    DB_PORT     = int(os.getenv("DB_PORT", "3306"))
     DB_USER     = os.getenv("DB_USER", "root")
     DB_PASSWORD = os.getenv("DB_PASSWORD", "")
     DB_NAME     = os.getenv("DB_NAME", "image_compressor")
+    DB_SSL      = os.getenv("DB_SSL", "false").lower() == "true"
+    DB_SSL_CA   = os.getenv("DB_SSL_CA", "")   # path to Aiven CA cert file
 
     # CORS — comma-separated list of allowed origins.
     # Default includes the production Vercel URL and local dev.
