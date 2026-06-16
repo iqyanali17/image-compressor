@@ -9,9 +9,16 @@ import os
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
-    
-    # Configure CORS - allow all for MVP
-    CORS(app)
+
+    # Explicit CORS config so headers are attached to every response,
+    # including error responses, across all environments.
+    CORS(
+        app,
+        origins=Config.ALLOWED_ORIGINS,
+        supports_credentials=True,
+        allow_headers=["Content-Type", "Authorization"],
+        methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    )
     
     # Register Error Handlers
     register_error_handlers(app)

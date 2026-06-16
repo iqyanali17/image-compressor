@@ -133,6 +133,10 @@ def download(filename):
 @image_bp.route('/history', methods=['GET'])
 @require_auth
 def history():
-    user_id = request.user_id
-    records = fetch_history(user_id)
-    return success_response(data=records, message="History fetched successfully")
+    try:
+        user_id = request.user_id
+        records = fetch_history(user_id)
+        return success_response(data=records, message="History fetched successfully")
+    except Exception as e:
+        print(f"History route error: {e}")
+        return error_response("Failed to fetch history", 500)
